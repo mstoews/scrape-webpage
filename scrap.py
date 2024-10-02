@@ -16,24 +16,22 @@ def get_clubs(page_contents):
     links = soup.find_all('a') # find all links
     return links
 
-def print_clubs(url):
+def list_clubs(url):
     page_contents = get_page_contents(url) 
-
     if page_contents:
-        links = get_clubs(page_contents)
-        n = 1
-        for link in links:
-            href = link.get('href')                        
-            if href and href.startswith('https://sop.utoronto.ca/group/'):
-                text = link.text            
-                email = getEmail(href)
-                data.append([text, email])                
+       links = get_clubs(page_contents)        
+    for link in links:
+        href = link.get('href')                        
+        if href and href.startswith('https://sop.utoronto.ca/group/'):
+            text = link.text            
+            email = get_email(href)
+            data.append([text, email])                
         
     else:
         print('Failed to get page contents.')
 
 
-def getEmail(url):
+def get_email(url):
     page_contents = get_page_contents(url)
     if page_contents:
         soup = BeautifulSoup(page_contents, 'html.parser')
@@ -53,7 +51,7 @@ if __name__ == '__main__':
     page = 1
     while page < MAX_PAGE:
         url = baseUrl + str(page)
-        print_clubs(url)
+        list_clubs(url)
         page = page + 1
 
     df = pd.DataFrame(data, columns=['Group Name', 'Primary Contact Email'])
