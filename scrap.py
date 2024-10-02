@@ -1,6 +1,6 @@
-import requests
-from bs4 import BeautifulSoup
-
+import requests # type: ignore
+from bs4 import BeautifulSoup # type: ignore
+import pandas as pd
 
 def get_page_contents(url):
     headers = {
@@ -12,10 +12,8 @@ def get_page_contents(url):
     return None
 
 def get_clubs(page_contents):
-    soup = BeautifulSoup(page_contents, 'html.parser')
-    # print(soup.prettify())
+    soup = BeautifulSoup(page_contents, 'html.parser')    
     links = soup.find_all('a') # find all links
-    #clubs = soup.find_all('a', class_='text-primary') # find all names for the links
     return links
 
 def print_clubs(url):
@@ -23,18 +21,14 @@ def print_clubs(url):
 
     if page_contents:
         links = get_clubs(page_contents)
+        n = 1
         for link in links:
             href = link.get('href')                        
             if href and href.startswith('https://sop.utoronto.ca/group/'):
                 text = link.text            
                 email = getEmail(href)
-                print(text,',', email)
+                data.append([text, email])                
         
-        #for i in range(len(links)):
-        #    print(links[i].text)     
-        
-        #for i in range(len(clubs)):
-        #    print(clubs[i].text)            
     else:
         print('Failed to get page contents.')
 
@@ -49,18 +43,22 @@ def getEmail(url):
     return None
     
 if __name__ == '__main__':
-    # 1. expand the main page to where all of the clubs are listed
-
+    
+    # base url
+    MAX_PAGE = 6
     baseUrl = 'https://sop.utoronto.ca/groups/?areas_of_interest=leadership&campus=st-george&pg='
+    data = []
 
-    url = baseUrl + '1'
-    print_clubs(url)
-    url = baseUrl + '2'
-    print_clubs(url)
-    url = baseUrl + '3'
-    print_clubs(url)
-    url = baseUrl + '4'
-    print_clubs(url)
-    print("Scraping completed and saved to uoftclubs24-25contact.csv")
+    # loop through each page until there are no more pages
+    page = 1
+    while page < MAX_PAGE:
+        url = baseUrl + str(page)
+        print_clubs(url)
+        page = page + 1
+
+    df = pd.DataFrame(data, columns=['Group Name', 'Primary Contact Email'])
+    df.to_csv('uoftclubs24-25contact.csv', index=False)
+
+    print("EOF")
 
 
