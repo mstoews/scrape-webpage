@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
 ````
 
-### List Clubs
+### List Clubs and Emails
 Create a list array of the club names and the matching email address. 
 
 ````
