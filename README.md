@@ -11,24 +11,9 @@ If you have git skip to the clone step
 
 ````bash
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-````
-#### the command will return, so make sure you follow the recommendations or brew will not run!
-
-````
-- Run these commands in your terminal to add Homebrew to your PATH:
-    echo >> /home/mst/.bashrc
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/mst/.bashrc
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-- Install Homebrew's dependencies if you have sudo access:
-    sudo apt-get install build-essential
-  For more information, see:
-    https://docs.brew.sh/Homebrew-on-Linux
-- We recommend that you install GCC:
-    brew install gcc
-- Run brew help to get started
-- Further documentation:
-    https://docs.brew.sh
-
+echo >> /home/mst/.bashrc
+echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/mst/.bashrc
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 ````
 
 then install git and gh. (gh is the command line for gh and very useful.)
@@ -79,7 +64,7 @@ python scrap.py
 ### Main Function and function flow.
 The main function starts with the starting page html page. The page is loaded and search is made for each group name. The email address is located on a separate link based upon the name of the group, get_clubs() function.  To do the scraping of the next associated page we use the function get_email(). Once have both the group name and the email address, they are added to the data array. Once we have looped through all the pages, which might take some time, we print the array using pandas dataframe. 
 
-````
+```py
 if __name__ == '__main__':
     
     # base url
@@ -99,12 +84,12 @@ if __name__ == '__main__':
 
     print("EOF")
 
-````
+```
 
 ### List Clubs and Emails
 Create a list array of the club names and the matching email address. 
 
-````
+```py
 def list_clubs(url):
     page_contents = get_page_contents(url) 
     if page_contents:
@@ -119,4 +104,4 @@ def list_clubs(url):
     else:
         print('Failed to get page contents.')
 
-````
+```
