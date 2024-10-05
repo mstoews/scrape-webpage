@@ -3,6 +3,55 @@
 ## Setup
 All the commands should be completed with terminal window. If you do not know where the terminal window is just search for it on Windows, Linus or Mac. 
 
+### Git and Github (gh)
+The first step requires git. If you do not have git installed on your mac or linux machine, you can install it with homebrew. If you do not have homebrew, you need to install it with the following command.
+
+If you have git skip to the clone step
+
+
+````bash
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+````
+#### the command will return, so make sure you follow the recommendations or brew will not run!
+
+````
+- Run these commands in your terminal to add Homebrew to your PATH:
+    echo >> /home/mst/.bashrc
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/mst/.bashrc
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+- Install Homebrew's dependencies if you have sudo access:
+    sudo apt-get install build-essential
+  For more information, see:
+    https://docs.brew.sh/Homebrew-on-Linux
+- We recommend that you install GCC:
+    brew install gcc
+- Run brew help to get started
+- Further documentation:
+    https://docs.brew.sh
+
+````
+
+then install git and gh. (gh is the command line for gh and very useful.)
+
+````bash
+brew install git; brew install gh
+````
+
+### Installing the requirements
+
+In order to run the python script you must have python. Seems obvious but there are actually two versions of python. Version 2 and 3. Depending upon which is installed on your mac or linux machine you need to adjust the command line to run successfully. 
+
+````bash
+python -V
+````
+If the command fails, the try 
+
+````bash
+python3 -V
+````
+if the works set you must adjust the pip and python commands to pip3 and python3 
+
+### Installation
 * clone the repo with :
 ````bash
 git clone  https://github.com/mstoews/scrape-webpage.git 
@@ -27,7 +76,7 @@ python scrap.py
 
 ## Code Review
 
-### Main Function and funcion flow.
+### Main Function and function flow.
 The main function starts with the starting page html page. The page is loaded and search is made for each group name. The email address is located on a separate link based upon the name of the group, get_clubs() function.  To do the scraping of the next associated page we use the function get_email(). Once have both the group name and the email address, they are added to the data array. Once we have looped through all the pages, which might take some time, we print the array using pandas dataframe. 
 
 ````

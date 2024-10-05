@@ -28,7 +28,7 @@ def list_clubs(url):
             data.append([text, email])                
         
     else:
-        print('Failed to get page contents.')
+        print('Content page is not a valid group')
 
 
 def get_email(url):
