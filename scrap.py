@@ -1,6 +1,6 @@
 import requests # type: ignore
 from bs4 import BeautifulSoup # type: ignore
-import pandas as pd
+import pandas as pd # type: ignore
 
 def get_page_contents(url):
     headers = {

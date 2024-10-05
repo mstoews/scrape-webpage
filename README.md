@@ -1,5 +1,4 @@
 # Scraping the University of Toronto Groups Site
-
 ## Setup
 All the commands should be completed with terminal window. If you do not know where the terminal window is just search for it on Windows, Linus or Mac. 
 
@@ -60,7 +59,6 @@ python scrap.py
 ````
 
 ## Code Review
-
 ### Main Function and function flow.
 The main function starts with the starting page html page. The page is loaded and search is made for each group name. The email address is located on a separate link based upon the name of the group, get_clubs() function.  To do the scraping of the next associated page we use the function get_email(). Once have both the group name and the email address, they are added to the data array. Once we have looped through all the pages, which might take some time, we print the array using pandas dataframe. 
 
@@ -83,7 +81,6 @@ if __name__ == '__main__':
     df.to_csv('uoftclubs24-25contact.csv', index=False)
 
     print("EOF")
-
 ```
 
 ### List Clubs and Emails
@@ -105,3 +102,15 @@ def list_clubs(url):
         print('Failed to get page contents.')
 
 ```
+
+
+## Virtual Environments
+### Running code in the environment
+```bash
+ virtualenv -p /usr/local/bin/python3 venv
+ source venv/bin/activate 
+ pip3 install -r ./requirements.txt
+ python3 scrap.py
+ deactivate
+ ```
+
