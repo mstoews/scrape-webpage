@@ -1,6 +1,16 @@
 import requests # type: ignore
+import os, sys
 from bs4 import BeautifulSoup # type: ignore
 import pandas as pd # type: ignore
+
+sys.argv
+
+if len(sys.argv) < 2:
+    print ('Usage: python scrap.py <group_name>')
+    sys.exit()
+else :
+    group_name = sys.argv[1]
+
 
 def get_page_contents(url):
     headers = {
@@ -25,10 +35,10 @@ def list_clubs(url):
         if href and href.startswith('https://sop.utoronto.ca/group/'):
             text = link.text            
             email = get_email(href)
-            data.append([text, email])                
-        
-    else:
-        print('Content page is not a valid group')
+            data.append([text, email])
+            print(text)
+        else:
+            print('Content page is not a valid group : ', href)
 
 
 def get_email(url):
@@ -41,22 +51,22 @@ def get_email(url):
     return None
     
 if __name__ == '__main__':
-    
+    print("Starting the scraping...")
     # base url
-    MAX_PAGE = 6
-    baseUrl = 'https://sop.utoronto.ca/groups/?areas_of_interest=leadership&campus=st-george&pg='
+    MAX_PAGE = 4
+    baseUrl = 'https://sop.utoronto.ca/groups/?areas_of_interest=' + group_name + '&campus=st-george'
     data = []
 
     # loop through each page until there are no more pages
     page = 1
     while page < MAX_PAGE:
-        url = baseUrl + str(page)
+        url = baseUrl + '&pg=' + str(page)
         list_clubs(url)
         page = page + 1
 
     df = pd.DataFrame(data, columns=['Group Name', 'Primary Contact Email'])
-    df.to_csv('uoftclubs24-25contact.csv', index=False)
+    df.to_csv('uoftclubs24-'+ group_name +'-25contact.csv', doublequote=True)
 
-    print("EOF")
+    print("Completed")
 
 
