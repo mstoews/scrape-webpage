@@ -15,6 +15,8 @@ In this case:
 https://sop.utoronto.ca/groups/?areas_of_interest=work-career-development&campus=st-george
 work-career-development is the parameter. 
 
+The output file name is group name.  'uoftclubs24-work-career-development-25contact.csv' for example.
+
 ## Setup
 All the commands should be completed with terminal window. If you do not know where the terminal window is just search for it on Windows, Linus or Mac. 
 
