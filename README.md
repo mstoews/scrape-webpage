@@ -10,7 +10,10 @@ pip install -r ./requirements.txt
 ```bash
 python scrap.py work-career-development
 ````
-This will only work if python is setup correctly and you have 
+This will only work if python is setup correctly and you have added the parameter that matches the URL.
+In this case: 
+https://sop.utoronto.ca/groups/?areas_of_interest=work-career-development&campus=st-george
+work-career-development is the parameter. 
 
 ## Setup
 All the commands should be completed with terminal window. If you do not know where the terminal window is just search for it on Windows, Linus or Mac. 
