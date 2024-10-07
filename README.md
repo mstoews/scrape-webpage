@@ -1,8 +1,21 @@
 # Scraping the University of Toronto Groups Site
+
+### Run the program. Data will be printed automatically in a csv format. You must pass a parameter to the scrap.py file to tell which group to use.
+
+Run requirements
+```bash
+pip install -r ./requirements.txt
+```
+
+```bash
+python scrap.py work-career-development
+````
+This will only work if python is setup correctly and you have 
+
 ## Setup
 All the commands should be completed with terminal window. If you do not know where the terminal window is just search for it on Windows, Linus or Mac. 
 
-### Git and Github (gh)
+### Installation of Git and Github (gh) 
 The first step requires git. If you do not have git installed on your mac or linux machine, you can install it with homebrew. If you do not have homebrew, you need to install it with the following command.
 
 If you have git skip to the clone step
@@ -35,7 +48,7 @@ python3 -V
 ````
 if the works set you must adjust the pip and python commands to pip3 and python3 
 
-### Installation
+### Clone Step : Installation
 * clone the repo with :
 ````bash
 git clone  https://github.com/mstoews/scrape-webpage.git 
@@ -51,13 +64,6 @@ cd scrape-webpage
 ````bash
 pip install -r ./requirements.txt
 ````
-
-* if everything goes according to plan run the program. Data will be printed automatically in a csv format. You must pass a parameter to the scrap.py file to tell which group to use.
-
-````bash
-python scrap.py work-career-development
-````
-
 
 
 ## Code Review
