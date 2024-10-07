@@ -3,8 +3,6 @@ import os, sys
 from bs4 import BeautifulSoup # type: ignore
 import pandas as pd # type: ignore
 
-sys.argv
-
 if len(sys.argv) < 2:
     print ('Usage: python scrap.py <group_name>')
     sys.exit()
@@ -21,10 +19,6 @@ def get_page_contents(url):
         return page.text
     return None
 
-def get_clubs(page_contents):
-    soup = BeautifulSoup(page_contents, 'html.parser')    
-    links = soup.find_all('a') # find all links
-    return links
 
 def list_clubs(url):
     page_contents = get_page_contents(url) 
@@ -40,6 +34,10 @@ def list_clubs(url):
         else:
             print('Content page is not a valid group : ', href)
 
+def get_clubs(page_contents):
+    soup = BeautifulSoup(page_contents, 'html.parser')
+    links = soup.find_all('a') # find all links
+    return links
 
 def get_email(url):
     page_contents = get_page_contents(url)
