@@ -52,11 +52,13 @@ cd scrape-webpage
 pip install -r ./requirements.txt
 ````
 
-* if everything goes according to plan run the program. Data will be printed automatically in a csv format.
+* if everything goes according to plan run the program. Data will be printed automatically in a csv format. You must pass a parameter to the scrap.py file to tell which group to use.
 
 ````bash
-python scrap.py
+python scrap.py work-career-development
 ````
+
+
 
 ## Code Review
 ### Main Function and function flow.
